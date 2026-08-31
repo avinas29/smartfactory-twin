@@ -1,0 +1,11 @@
+{
+  "name": "smartfactory-twin-docs",
+  "private": true,
+  "description": "Deck generation for the SmartFactory Twin submission. Run: npm install && node docs/build_deck.js",
+  "scripts": {
+    "deck": "node docs/build_deck.js"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  }
+}

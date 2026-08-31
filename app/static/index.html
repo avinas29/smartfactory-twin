@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SmartFactory Twin — PeakBusters</title>
+<link rel="stylesheet" href="/static/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="mark"></span>
+    <div>
+      <h1>SmartFactory&nbsp;Twin</h1>
+      <p>Vehicle assembly line · 42 stations · PeakBusters</p>
+    </div>
+  </div>
+
+  <div class="clock">
+    <div class="clock-face">
+      <span id="clock-time">--:--</span>
+      <span id="clock-date" class="muted"></span>
+    </div>
+    <div class="clock-controls">
+      <button id="btn-play" class="btn btn-play" title="Play / pause replay">▶</button>
+      <input id="scrub" type="range" min="0" max="1000" value="0" step="1">
+      <select id="speed" class="btn" title="Replay speed">
+        <option value="60">1 min/s</option>
+        <option value="300" selected>5 min/s</option>
+        <option value="900">15 min/s</option>
+      </select>
+    </div>
+  </div>
+
+  <nav class="views">
+    <button data-view="line" class="active">Line</button>
+    <button data-view="trace">Traceback</button>
+    <button data-view="plant">Plant</button>
+    <button data-view="business">Business</button>
+    <button data-view="validation">Validation</button>
+  </nav>
+</header>
+
+<div id="bookmarks" class="bookmarks"></div>
+
+<main>
+  <!-- ══════════════════════════ LINE ══════════════════════════ -->
+  <section id="view-line" class="view active">
+    <div class="line-wrap">
+      <div class="kpis" id="kpis"></div>
+      <div class="panel line-panel">
+        <div class="panel-head">
+          <h2>Line state</h2>
+          <div class="legend" id="legend"></div>
+        </div>
+        <div id="line-svg" class="line-svg"></div>
+      </div>
+      <div class="panel" id="detail-panel" hidden>
+        <div class="panel-head">
+          <h2 id="detail-title">Station</h2>
+          <button class="btn ghost" id="detail-close">Close</button>
+        </div>
+        <div id="detail-body"></div>
+      </div>
+    </div>
+
+    <aside class="rail">
+      <div class="panel">
+        <div class="panel-head"><h2>Line constraint</h2></div>
+        <div id="constraint"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <h2>Recommended actions</h2>
+          <span class="pill" id="rec-count"></span>
+        </div>
+        <div id="recs"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h2>Units at risk</h2><span class="muted small">scored at body exit</span></div>
+        <div id="at-risk"></div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ══════════════════════════ TRACEBACK ══════════════════════════ -->
+  <section id="view-trace" class="view">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Delayed-defect traceback</h2>
+        <div class="row gap">
+          <label class="muted small">Quality gate</label>
+          <select id="gate-select" class="btn"></select>
+        </div>
+      </div>
+      <div id="trace-body"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ PLANT ══════════════════════════ -->
+  <section id="view-plant" class="view">
+    <div id="plant-body" class="grid-2"></div>
+  </section>
+
+  <!-- ══════════════════════════ BUSINESS ══════════════════════════ -->
+  <section id="view-business" class="view">
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Business case</h2>
+        <div class="row gap">
+          <label class="muted small">Lines deployed</label>
+          <input id="lines" type="range" min="1" max="12" value="1">
+          <span id="lines-n" class="pill">1</span>
+        </div>
+      </div>
+      <div id="business-body"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════ VALIDATION ══════════════════════════ -->
+  <section id="view-validation" class="view">
+    <div id="validation-body"></div>
+  </section>
+</main>
+
+<div id="toast" class="toast" hidden></div>
+<script src="/static/app.js"></script>
+</body>
+</html>

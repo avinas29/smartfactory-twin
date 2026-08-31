@@ -1,0 +1,15 @@
+# Regenerate deterministically from the seed: `python -m twin.pipeline` (~100 s).
+# ~90 MB, so they are rebuilt rather than committed.
+data/
+artifacts/
+
+# Deck tooling. `npm install` restores it; only build_deck.js is source.
+node_modules/
+
+# Build intermediates
+docs/*.tmp.html
+
+__pycache__/
+*.pyc
+.DS_Store
+.venv/

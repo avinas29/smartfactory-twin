@@ -1,0 +1,321 @@
+{
+  "line": {
+    "stations": 42,
+    "coverage": {
+      "FULL": {
+        "stations": 28,
+        "share": 0.667
+      },
+      "PARTIAL": {
+        "stations": 8,
+        "share": 0.19
+      },
+      "DARK": {
+        "stations": 6,
+        "share": 0.143
+      }
+    },
+    "takt": 60.0
+  },
+  "data": {
+    "units": 25108,
+    "station_events": 1054536,
+    "days": 28,
+    "defects_created": 4195,
+    "escape_rate": 0.2791,
+    "downstream_flag_rate": 0.0791
+  },
+  "detection": {
+    "alerts_per_shift": 8.41,
+    "body08": 28.5,
+    "body14": 81.7,
+    "assy31": 50.3
+  },
+  "model": {
+    "selected": "HistGradientBoosting",
+    "test": {
+      "policy": "top-K per shift",
+      "roc_auc": 0.651,
+      "pr_auc": 0.1684,
+      "base_rate": 0.1035,
+      "pr_lift": 1.63,
+      "precision": 0.12,
+      "recall": 0.0647,
+      "f1": 0.0841,
+      "false_alarm_rate": 0.0548,
+      "brier": 0.09087,
+      "confusion": {
+        "tn": 3038,
+        "fp": 176,
+        "fn": 347,
+        "tp": 24
+      },
+      "flagged_share": 0.0558
+    },
+    "reachable": {
+      "policy": "top-K per shift",
+      "roc_auc": 0.7665,
+      "pr_auc": 0.1499,
+      "base_rate": 0.0611,
+      "pr_lift": 2.46,
+      "precision": 0.0737,
+      "recall": 0.067,
+      "f1": 0.0702,
+      "false_alarm_rate": 0.0548,
+      "brier": 0.05476,
+      "confusion": {
+        "tn": 3038,
+        "fp": 176,
+        "fn": 195,
+        "tp": 14
+      },
+      "flagged_share": 0.0555
+    },
+    "null": {
+      "roc_auc": 0.3972,
+      "pr_auc": 0.0844,
+      "base_rate": 0.1035
+    },
+    "ci": {
+      "roc_auc_ci": [
+        0.6215,
+        0.681
+      ],
+      "pr_auc_ci": [
+        0.1437,
+        0.1925
+      ],
+      "n_boot": 400
+    },
+    "split": {
+      "train": 17938,
+      "val": 3585,
+      "test": 3585,
+      "train_days": [
+        0,
+        20
+      ],
+      "val_days": [
+        20,
+        24
+      ],
+      "test_days": [
+        24,
+        28
+      ]
+    },
+    "alerts": 25.0,
+    "capacity": 25,
+    "ceiling": {
+      "positives": 371,
+      "body_attributable": 209,
+      "downstream_origin": 162,
+      "recall_body_attributable": 0.067,
+      "recall_downstream_origin": 0.0617,
+      "note": "Failures created after the decision point cannot be predicted at body exit by any model. They are the ceiling, not a modelling gap."
+    },
+    "selection": [
+      {
+        "name": "LogisticRegression",
+        "val_pr_auc": 0.1157,
+        "val_roc_auc": 0.6209,
+        "train_roc_auc": 0.6908,
+        "test_roc_auc": 0.6635,
+        "test_pr_auc": 0.1836,
+        "selected": false
+      },
+      {
+        "name": "HistGradientBoosting",
+        "val_pr_auc": 0.1234,
+        "val_roc_auc": 0.6016,
+        "train_roc_auc": 0.7344,
+        "test_roc_auc": 0.6564,
+        "test_pr_auc": 0.1868,
+        "selected": true
+      },
+      {
+        "name": "RandomForest",
+        "val_pr_auc": 0.1086,
+        "val_roc_auc": 0.5865,
+        "train_roc_auc": 0.7651,
+        "test_roc_auc": 0.6767,
+        "test_pr_auc": 0.2115,
+        "selected": false
+      }
+    ]
+  },
+  "virtual_sensor": {
+    "auc": 0.9425,
+    "ap": 0.5973,
+    "base": 0.0403,
+    "trust": 0.885,
+    "holdout": [
+      21,
+      22,
+      23,
+      29,
+      32,
+      35,
+      40
+    ]
+  },
+  "traceback": {
+    "probes": 79,
+    "overall": {
+      "n": 79,
+      "top1": 0.456,
+      "top3": 0.797,
+      "mean_true_origin_share": 0.677
+    },
+    "random_baseline_top1": 0.051,
+    "by_confidence": {
+      "high": {
+        "n": 32,
+        "top1": 0.688,
+        "top3": 0.812,
+        "mean_true_origin_share": 0.797
+      },
+      "medium": {
+        "n": 15,
+        "top1": 0.467,
+        "top3": 0.867,
+        "mean_true_origin_share": 0.584
+      },
+      "low": {
+        "n": 32,
+        "top1": 0.219,
+        "top3": 0.75,
+        "mean_true_origin_share": 0.601
+      }
+    },
+    "note": "A 'hit' is the twin's leading suspect matching the station that actually created most of the rejects in that window. The true origin is recorded by the simulator and never exposed to the twin. The random baseline picks uniformly among upstream stations."
+  },
+  "forecast": {
+    "probes": 11,
+    "hits": 4,
+    "span_days": 7.44,
+    "hit_rate": 0.364,
+    "median_lead_min": 95.0,
+    "median_units_at_risk": 14.4,
+    "note": "A 'call' is a forecast that the constraint will change hands; a 'hit' is that station actually holding the constraint at the forecast horizon."
+  },
+  "economics": {
+    "annual": 1815615,
+    "y1_cost": 520000,
+    "y1_net": 1295615,
+    "payback": 3.4,
+    "quality": {
+      "basis": "MODELLED",
+      "units_per_year": 230400,
+      "test_window_days": 4,
+      "true_positives_in_test": 24,
+      "false_positives_in_test": 176,
+      "test_units": 3585,
+      "precision_at_capacity": 0.12,
+      "recall_reachable": 0.067,
+      "defects_caught_early_per_year": 1440,
+      "escapes_intercepted_in_test": 12,
+      "escapes_in_test": 191,
+      "escapes_intercepted_per_year": 720,
+      "extra_inspections_per_year": 12000,
+      "saving_per_catch": 560,
+      "saving_per_escape": 5220,
+      "inspection_effectiveness": 0.7,
+      "gross_benefit": 3195360,
+      "inspection_cost": 312000,
+      "net_modelled": 2883360,
+      "realisation_factor": 0.5,
+      "net_benefit": 1441680,
+      "escape_rate_ci": [
+        0.0363,
+        0.1066
+      ],
+      "benefit_range": {
+        "low": 886268,
+        "high": 2358169
+      },
+      "sample_note": "The escape term rests on 12 intercepted escapes observed in a 4-day test window. It is the largest single line in this case and the least statistically settled; a pilot should measure it before the number is committed to."
+    },
+    "throughput": {
+      "basis": "MODELLED",
+      "constraint_events_verified": 4,
+      "probe_span_days": 7.4,
+      "constraint_events_per_year": 129,
+      "measured_lead_minutes": 95.0,
+      "units_at_risk_per_event": 14.4,
+      "assumed_conversion_rate": 0.35,
+      "realisation_factor": 0.5,
+      "units_recovered_per_year": 325,
+      "contribution_margin_per_unit": 1150,
+      "benefit": 373935,
+      "note": "Valued at contribution margin on recovered production. The stopped-line downtime rate is not applied: a constraint handover slows the line, it does not stop it."
+    }
+  },
+  "instrumentation": [
+    {
+      "station": "ASSY-30",
+      "name": "Exhaust & heat shields",
+      "zone": "ASSY",
+      "tier": "DARK",
+      "data_confidence": 0.45,
+      "actionable_alerts_in_window": 11,
+      "alerts_per_year": 94,
+      "mean_units_exposed": 207,
+      "retrofit_cost": 18500,
+      "modelled_annual_benefit": 47766,
+      "payback_years": 0.39
+    },
+    {
+      "station": "ASSY-36",
+      "name": "Seats & interior trim",
+      "zone": "ASSY",
+      "tier": "DARK",
+      "data_confidence": 0.45,
+      "actionable_alerts_in_window": 9,
+      "alerts_per_year": 77,
+      "mean_units_exposed": 206,
+      "retrofit_cost": 18500,
+      "modelled_annual_benefit": 38723,
+      "payback_years": 0.48
+    },
+    {
+      "station": "BODY-09",
+      "name": "Respot weld cell 1",
+      "zone": "BODY",
+      "tier": "PARTIAL",
+      "data_confidence": 0.72,
+      "actionable_alerts_in_window": 17,
+      "alerts_per_year": 146,
+      "mean_units_exposed": 194,
+      "retrofit_cost": 18500,
+      "modelled_annual_benefit": 35143,
+      "payback_years": 0.53
+    },
+    {
+      "station": "ASSY-38",
+      "name": "Bumpers & fascia",
+      "zone": "ASSY",
+      "tier": "PARTIAL",
+      "data_confidence": 0.72,
+      "actionable_alerts_in_window": 34,
+      "alerts_per_year": 291,
+      "mean_units_exposed": 94,
+      "retrofit_cost": 18500,
+      "modelled_annual_benefit": 33971,
+      "payback_years": 0.54
+    },
+    {
+      "station": "PAINT-18",
+      "name": "Sealer manual touch-up",
+      "zone": "PAINT",
+      "tier": "DARK",
+      "data_confidence": 0.45,
+      "actionable_alerts_in_window": 10,
+      "alerts_per_year": 86,
+      "mean_units_exposed": 162,
+      "retrofit_cost": 18500,
+      "modelled_annual_benefit": 33930,
+      "payback_years": 0.55
+    }
+  ]
+}
