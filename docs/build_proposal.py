@@ -198,7 +198,7 @@ against the same station a day earlier — weighted by the plant's FMEA
 station-to-failure-mode map.</p>
 {fig("03-traceback.png", "12:10 — 14 rejects at the ASSY-27 torque audit. BODY-08 "
      "carries 84% of the evidence at HIGH confidence; containment is scoped to the "
-     "238 units that passed during 272 minutes of drift, 86 of them still in the plant.")}
+     "230 units that passed during 272 minutes of drift, 86 of them still in the plant.")}
 <div class="note"><b>We call this ranked attribution, not root-cause
 prediction.</b> It is a difference-in-means with a domain prior, presented to an
 engineer as evidence to check. What makes it trustworthy is not the ranking — it
@@ -272,9 +272,15 @@ confidence.</p>
      "checklist and virtual sensing. The panel states what is missing, what was "
      "inferred, and the resulting confidence discount.")}
 <div class="note"><b>So it stays a MONITOR.</b> A sensor-poor station is
-structurally barred from producing an IMMEDIATE "stop work" recommendation,
-because its evidence cannot carry that cost. It gets a watch item and an
-instrumentation business case instead.</div>
+structurally barred from raising an IMMEDIATE <i>quality</i> action — its
+condition evidence is inferred, and inference cannot carry the cost of stopping
+work. It gets a watch item and a costed instrumentation case instead.
+<br><br>It can still raise an IMMEDIATE <i>flow</i> action, and later the same
+day it does: the twin calls BODY-14 as the incoming line constraint at 80%
+confidence. That is not an inconsistency. Cycle time is <b>measured</b> at every
+station, including this one — so the twin is confident the station is slowing the
+line, and unconfident about what it is doing to quality. That is precisely the
+distinction a coverage tier should produce.</div>
 <blockquote>Strong evidence → act. Weak evidence → don't overreact.</blockquote>
 <p>That asymmetry is the difference between a tool a supervisor keeps using and
 one they learn to ignore. It is enforced in code, not left to judgement: the

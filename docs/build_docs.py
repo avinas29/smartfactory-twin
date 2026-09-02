@@ -118,10 +118,11 @@ def _embed_images(html: str, base: pathlib.Path) -> str:
     return re.sub(r'src="([^"]+)"', repl, html)
 
 
-def render(html_body: str, out_pdf: pathlib.Path, base: pathlib.Path) -> None:
+def render(html_body: str, out_pdf: pathlib.Path, base: pathlib.Path,
+           extra_css: str = "") -> None:
     doc = (f"<!doctype html><html><head><meta charset='utf-8'>"
-           f"<style>{CSS}</style></head><body>{_embed_images(html_body, base)}"
-           f"</body></html>")
+           f"<style>{CSS}{extra_css}</style></head>"
+           f"<body>{_embed_images(html_body, base)}</body></html>")
     tmp = out_pdf.with_suffix(".tmp.html")
     tmp.write_text(doc, encoding="utf-8")
     chrome = next((c for c in CHROME_CANDIDATES if c and pathlib.Path(c).exists()), None)
@@ -160,6 +161,46 @@ def build_readme() -> None:
     render(cover + body, OUT / "SmartFactory-Twin-README.pdf", ROOT)
 
 
+VIDEO_CSS = """
+/* The video script is read while recording, so narration has to be findable at a
+   glance and stage directions must never be mistaken for words to speak. */
+blockquote{ background:#fff; border-left:3px solid var(--purple); border-radius:0;
+            padding:6pt 0 6pt 12pt; margin:8pt 0; font-size:11pt; font-weight:400;
+            color:var(--ink); }
+blockquote p{ margin:0 0 6pt; }
+blockquote p:last-child{ margin-bottom:0; }
+blockquote em{ color:var(--purple); font-style:italic; font-weight:600;
+               font-size:9.5pt; }
+blockquote strong{ color:#000; font-weight:700; }
+h3{ font-size:13pt; margin:18pt 0 6pt; padding:5pt 9pt; background:var(--wash);
+    border-radius:4px; color:var(--deep); }
+table{ font-size:8.6pt; }
+td code{ font-size:7.4pt; }
+"""
+
+
+def build_video() -> None:
+    md = (DOCS / "VIDEO.md").read_text(encoding="utf-8")
+    body = markdown.markdown(
+        md, extensions=["tables", "fenced_code", "sane_lists", "attr_list"])
+    parts = body.split("<hr />", 1)
+    if len(parts) == 2:
+        body = parts[1]
+    cover = """
+    <div class="cover">
+      <h1>Prototype Video</h1>
+      <p class="tag">Five-minute script, shot list and narration.</p>
+      <p>Every shot has a deep link that lands on the exact frame. Read the bold
+      words a little harder; anything in square brackets is a stage direction,
+      not a line to speak.</p>
+      <div class="meta">SmartFactory Twin &nbsp;·&nbsp; Team PeakBusters
+      &nbsp;·&nbsp; Accenture Innovation Challenge 2026<br>
+      <span style="color:#d9b3ff">https://github.com/avinas29/smartfactory-twin</span></div>
+    </div>"""
+    render(cover + body, OUT / "SmartFactory-Twin-Video-Script.pdf", DOCS,
+           extra_css=VIDEO_CSS)
+
+
 def build_proposal() -> None:
     src = DOCS / "BUSINESS-PROPOSAL.html"
     render(src.read_text(encoding="utf-8"), OUT / "SmartFactory-Twin-Business-Proposal.pdf", DOCS)
@@ -170,3 +211,5 @@ if __name__ == "__main__":
     build_readme()
     if (DOCS / "BUSINESS-PROPOSAL.html").exists():
         build_proposal()
+    if (DOCS / "VIDEO.md").exists():
+        build_video()

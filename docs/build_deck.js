@@ -283,7 +283,7 @@ const td = (t, o = {}) => ({ text: t, options: { color: o.color || C.mid, bold: 
   const s = lightSlide("When a gate does reject, the twin already knows where to look", "DELAYED DEFECTS");
   s.addImage({ path: img("03-traceback.png"), x: MX, y: 1.68, w: 7.5, h: 4.05 });
   stat(s, 8.42, 1.68, 4.1, "84%", "of the evidence points at BODY-08", "confidence HIGH — a single dominant suspect", C.bad);
-  stat(s, 8.42, 3.24, 4.1, "238 units", "passed during 272 min of drift", "86 of them still inside the plant", C.deep);
+  stat(s, 8.42, 3.24, 4.1, "230 units", "passed during 272 min of drift", "86 of them still inside the plant", C.deep);
   note(s, [
     { text: "Ranked attribution, not root-cause prediction. ", options: { bold: true, color: C.deep } },
     { text: "A difference-in-means with a domain prior, presented to an engineer as evidence to check.",
@@ -390,11 +390,12 @@ const td = (t, o = {}) => ({ text: t, options: { color: o.color || C.mid, bold: 
       fontFace: FONT, fontSize: 12, bold: true, color: "FFFFFF", align: "center" });
   });
   note(s, [
-    { text: "A sensor-poor station is structurally barred from producing an IMMEDIATE “stop work” " +
-            "recommendation, ", options: { bold: true, color: C.deep } },
-    { text: "because its evidence cannot carry that cost. It gets a watch item and an instrumentation " +
-            "business case instead. The gate is enforced in code, on measured data confidence — not left " +
-            "to judgement.", options: {} },
+    { text: "A sensor-poor station is barred from raising an IMMEDIATE quality action, ", options: { bold: true, color: C.deep } },
+    { text: "because its condition evidence is inferred and inference cannot carry the cost of stopping " +
+            "work. It gets a watch item and a costed instrumentation case instead. It can still raise a " +
+            "flow action — cycle time is measured at every station, so the twin is confident it is slowing " +
+            "the line and unconfident about what it is doing to quality. The gate is enforced in code, on " +
+            "measured data confidence.", options: {} },
   ], MX, 4.72, 11.9, 1.0);
   body(s, "That asymmetry is the difference between a tool a supervisor keeps using and one they learn to " +
           "ignore. Every recommendation carries an accept/dismiss decision that is logged — over a pilot, " +

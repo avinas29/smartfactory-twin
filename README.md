@@ -30,7 +30,7 @@ The SmartFactory Twin flags BODY-08 at **07:43** — 28 minutes in.
 | First signal | rejection at ASSY-27 | station alarm at BODY-08 |
 | Elapsed | ~90 min | **28 min** |
 | Question you can ask | "how big is the batch?" | "should we stop this now?" |
-| Containment scope | the shift's build | **238 units, 86 still in the plant** |
+| Containment scope | the shift's build | **230 units, 86 still in the plant** |
 
 ![Line view during the BODY-08 incident](docs/assets/02-line-escalated.png)
 
@@ -104,7 +104,7 @@ rejected unit experienced upstream against the units that passed the same gate,
 and against the same station a day earlier, weighted by the plant's FMEA
 station-to-failure-mode map. **BODY-08, 84% of the evidence, confidence HIGH.**
 
-Containment is then scoped to units rather than batches: **238 units passed
+Containment is then scoped to units rather than batches: **230 units passed
 BODY-08 during 272 minutes of drift; 86 are still inside the plant.**
 
 **Ranked attribution with a confidence label — not root-cause prediction.** The
@@ -120,9 +120,16 @@ stations — but **82 minutes in rather than 28**, and at 43% data confidence.
 ![Sensor-poor station](docs/assets/04-dark-station.png)
 
 So it stays a **MONITOR**. A sensor-poor station is structurally barred from
-producing an IMMEDIATE "stop work" recommendation, because its evidence cannot
-carry that cost. It gets a watch item and an instrumentation business case
-instead.
+raising an IMMEDIATE *quality* action — its condition evidence is inferred, and
+inference cannot carry the cost of stopping work. It gets a watch item and a
+costed instrumentation case instead.
+
+It can still raise an IMMEDIATE *flow* action, and later that day it does: at
+17:06 the twin says BODY-14 becomes the line constraint in 30 minutes, at 80%
+confidence. That is not an inconsistency — cycle time is **measured** at every
+station, including this one. The twin is confident the station is slowing the
+line and unconfident about what it is doing to quality, which is exactly the
+distinction the coverage tier should produce.
 
 > **Strong evidence -> act. Weak evidence -> don't overreact.**
 

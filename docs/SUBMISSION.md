@@ -9,7 +9,7 @@ Everything the Round 2 submission needs, and how to regenerate any of it.
 | # | Requirement | File | Status |
 |---|---|---|---|
 | 1 | Public GitHub link | **https://github.com/avinas29/smartfactory-twin** | live |
-| 2 | Prototype video (.mp4/.mov) | record from `docs/VIDEO.md` | **to record** |
+| 2 | Prototype video (.mp4/.mov) | script: `docs/VIDEO.md` / `SmartFactory-Twin-Video-Script.pdf` (5:00, 11 shots) | **to record** |
 | 3 | README as PDF, ≤ 20 MB | `docs/SmartFactory-Twin-README.pdf` — **1.2 MB** | ready |
 | 4 | Business Proposal PDF | `docs/SmartFactory-Twin-Business-Proposal.pdf` — 1.5 MB, 13 pp | ready |
 | 5 | Business Proposal PPTX | `docs/SmartFactory-Twin-Business-Proposal.pptx` — 1.1 MB, 15 slides | ready |
@@ -49,7 +49,7 @@ smartfactory-twin/
 ├── docs/
 │   ├── INTEGRATION.md            what the twin reads; shadow-mode validation plan
 │   ├── LIMITATIONS.md            expected challenges, answered or acknowledged
-│   ├── VIDEO.md                  script, narration, shot list with deep links
+│   ├── VIDEO.md                  5-minute script, narration, 11 shots with deep links
 │   ├── SUBMISSION.md             this file
 │   ├── FACTS.json                canonical figures, written by the pipeline
 │   ├── assets/                   six screenshots used across all documents
@@ -79,7 +79,7 @@ python -m pytest tests -q        # 21 tests
 python run.py --no-browser &     # serve on :8077
 python docs/capture.py           # screenshots  -> docs/assets/
 python docs/build_proposal.py    # proposal HTML from FACTS.json
-python docs/build_docs.py        # both PDFs
+python docs/build_docs.py        # all three PDFs (README, proposal, video script)
 node docs/build_deck.js          # the PPTX
 ```
 
@@ -101,10 +101,10 @@ re-state themselves. Nothing is typed in by hand.
 
 ### Video
 - [ ] Recorded at 1080p+, browser window only, no other tabs visible
-- [ ] Length ≤ 3:30 (target 3:00)
+- [ ] Length ≤ 5:30 (target 5:00)
 - [ ] Cache warmed before recording — no visible loading states
-- [ ] Traceback shot (1:16–1:52) and sensor-poor shot (1:52–2:22) are intact and unhurried
-- [ ] Audio levels consistent; no "um" over the 84% reveal
+- [ ] Traceback shot (2:10–3:05) and sensor-poor shot (3:05–3:55) are intact and unhurried
+- [ ] Audio levels consistent; the full beat of silence before the 84% reveal is intact
 - [ ] Exported as `.mp4` or `.mov`
 - [ ] Watched end to end once, muted, to check nothing on screen looks broken
 
