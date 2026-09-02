@@ -47,7 +47,7 @@ S(f"""
   no process sensors at all.</p>
   <div class="meta">Business Proposal &nbsp;·&nbsp; Team PeakBusters
   &nbsp;·&nbsp; Accenture Innovation Challenge 2026 &nbsp;·&nbsp; Problem Track 4,
-  Round 2</div>
+  Round 2<br><span style="color:#d9b3ff">https://github.com/avinas29/smartfactory-twin</span></div>
 </div>""")
 
 # ── 1. the problem ──────────────────────────────────────────────────────────
@@ -489,7 +489,11 @@ audit trail for the decision ledger</td></tr>
 rather than a jam alert; defect risk with a traceback list rather than an alarm;
 and virtual sensors so coverage comes from inference rather than new hardware.
 All three are now working code with measured results — and where a result is weak
-or a sample is thin, this document says so.</div>""")
+or a sample is thin, this document says so.</div>
+<p style="margin-top:14pt"><b>Every figure in this document is reproducible.</b>
+Clone <a href="https://github.com/avinas29/smartfactory-twin">https://github.com/avinas29/smartfactory-twin</a>, run <code>python run.py</code>, and the same
+numbers come back — the documents read them from the pipeline's own output rather
+than being written by hand.</p>""")
 
 html = "\n".join(SECTIONS)
 (DOCS / "BUSINESS-PROPOSAL.html").write_text(html, encoding="utf-8")

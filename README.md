@@ -8,6 +8,8 @@ actually affected.
 
 **Team PeakBusters** · Accenture Innovation Challenge 2026 · Problem Track 4, Round 2
 
+**Repository:** https://github.com/avinas29/smartfactory-twin
+
 ---
 
 ## The problem, in one incident
@@ -283,5 +285,7 @@ One process and a browser. No microservices, no Kubernetes, no cloud.
 - **[docs/BUSINESS-PROPOSAL.pdf](docs/BUSINESS-PROPOSAL.pdf)** — the full case.
 
 ---
+
+**Repository — clone, run, and reproduce every figure:** https://github.com/avinas29/smartfactory-twin
 
 <sub>`data/` and `artifacts/` are gitignored and regenerate deterministically from the seed.</sub>

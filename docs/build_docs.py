@@ -155,7 +155,7 @@ def build_readme() -> None:
       the vehicles actually affected.</p>
       <div class="meta">Team PeakBusters &nbsp;·&nbsp; Accenture Innovation
       Challenge 2026 &nbsp;·&nbsp; Problem Track 4, Round 2 &nbsp;·&nbsp;
-      Technical README</div>
+      Technical README<br><span style="color:#d9b3ff">https://github.com/avinas29/smartfactory-twin</span></div>
     </div>"""
     render(cover + body, OUT / "SmartFactory-Twin-README.pdf", ROOT)
 
