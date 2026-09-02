@@ -562,7 +562,7 @@ const td = (t, o = {}) => ({ text: t, options: { color: o.color || C.mid, bold: 
     x: MX, y: 6.06, w: 11.9, h: 0.42, isTextBox: true, margin: 0,
     fontFace: HEAD, fontSize: 19, bold: true, color: C.lilac,
   });
-  s.addText("Team PeakBusters   ·   github.com/<org>/smartfactory-twin   ·   python run.py", {
+  s.addText("Team PeakBusters   ·   github.com/avinas29/smartfactory-twin   ·   python run.py", {
     x: MX, y: 6.72, w: 11.9, h: 0.3, isTextBox: true, margin: 0,
     fontFace: FONT, fontSize: 11, color: "9B8FAD",
   });

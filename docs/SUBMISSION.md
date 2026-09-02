@@ -8,7 +8,7 @@ Everything the Round 2 submission needs, and how to regenerate any of it.
 
 | # | Requirement | File | Status |
 |---|---|---|---|
-| 1 | Public GitHub link | the repository below | push required |
+| 1 | Public GitHub link | **https://github.com/avinas29/smartfactory-twin** | live |
 | 2 | Prototype video (.mp4/.mov) | record from `docs/VIDEO.md` | **to record** |
 | 3 | README as PDF, ≤ 20 MB | `docs/SmartFactory-Twin-README.pdf` — **1.2 MB** | ready |
 | 4 | Business Proposal PDF | `docs/SmartFactory-Twin-Business-Proposal.pdf` — 1.5 MB, 13 pp | ready |
@@ -92,12 +92,12 @@ re-state themselves. Nothing is typed in by hand.
 ## 4 · Pre-submission checklist
 
 ### Repository
-- [ ] `git init && git add . && git commit` — confirm `data/` and `artifacts/` are excluded
-- [ ] Push to a **public** GitHub repository
+- [x] `git init && git add . && git commit` — `data/` and `artifacts/` excluded
+- [x] Pushed to a **public** GitHub repository
 - [ ] Clone it fresh into a clean directory and run `pip install -r requirements.txt && python run.py` — confirm the dashboard comes up
-- [ ] `python -m pytest tests -q` → **21 passed**
-- [ ] Replace `github.com/<org>/smartfactory-twin` on the deck's closing slide with the real URL, then `node docs/build_deck.js`
-- [ ] README renders correctly on GitHub (check the six images resolve)
+- [x] `python -m pytest tests -q` → **21 passed**
+- [x] Deck closing slide carries the live URL — `github.com/avinas29/smartfactory-twin`
+- [ ] README renders correctly on GitHub (check the four inline images resolve)
 
 ### Video
 - [ ] Recorded at 1080p+, browser window only, no other tabs visible
