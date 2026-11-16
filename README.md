@@ -1,5 +1,7 @@
 # SmartFactory Twin
 
+
+
 ### Don't wait for the defect.
 
 A flow-level digital twin for a vehicle assembly line that detects a station
